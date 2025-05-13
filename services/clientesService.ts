@@ -10,7 +10,7 @@ export interface ClienteData {
   status: boolean
 }
 
-// Obtener todos los clientes
+// getAllClientes(): Consulta la lista de clientes desde el backend.
 export const getAllClientes = async (): Promise<ClienteData[]> => {
   try {
     const { data } = await axios.get(CLIENTE_API_URL)
@@ -24,7 +24,7 @@ export const getAllClientes = async (): Promise<ClienteData[]> => {
 }
 
 
-// Buscar cliente por ID
+// findClienteById(id): Busca un cliente por su ID.
 export const findClienteById = async (id: number): Promise<ClienteData> => {
   try {
     const { data } = await axios.get(`${CLIENTE_API_URL}/${id}`)
@@ -35,7 +35,7 @@ export const findClienteById = async (id: number): Promise<ClienteData> => {
   }
 }
 
-// Crear nuevo cliente
+// saveCliente(data): Envía los datos de un nuevo cliente al servidor.
 export const saveCliente = async (clienteData: ClienteData): Promise<any> => {
   try {
     const { data } = await axios.post(CLIENTE_API_URL, clienteData)
@@ -46,7 +46,7 @@ export const saveCliente = async (clienteData: ClienteData): Promise<any> => {
   }
 }
 
-// Actualizar cliente existente
+// updateCliente(data, id): Actualiza un cliente existente. 
 export const updateCliente = async (clienteData: ClienteData, id: number): Promise<any> => {
   try {
     const { data } = await axios.put(`${CLIENTE_API_URL}/${id}`, clienteData)
@@ -57,7 +57,7 @@ export const updateCliente = async (clienteData: ClienteData, id: number): Promi
   }
 }
 
-// Eliminar cliente por ID
+// deleteCliente(id): Elimina un cliente por su ID.
 export const deleteCliente = async (id: number): Promise<any> => {
   try {
     const { data } = await axios.delete(`${CLIENTE_API_URL}/${id}`)

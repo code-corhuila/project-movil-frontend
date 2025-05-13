@@ -77,7 +77,6 @@ import {
   IonList,
   toastController,
 } from '@ionic/vue'
-
 import {
   getAllClientes,
   saveCliente,
@@ -85,12 +84,10 @@ import {
   deleteCliente,
 } from '../../services/clientesService'
 import type { ClienteData } from '../../services/clientesService'
-
 const cliente = ref<ClienteData>({ nombre: '', telefono: 0, status: true })
 const clientes = ref<(ClienteData & { id: number })[]>([])
 const editando = ref(false)
 const idEditando = ref<number | null>(null)
-
 const mostrarToast = async (mensaje: string, color: 'success' | 'danger') => {
   const toast = await toastController.create({
     message: mensaje,
@@ -100,7 +97,6 @@ const mostrarToast = async (mensaje: string, color: 'success' | 'danger') => {
   })
   await toast.present()
 }
-
 const cargarClientes = async () => {
   try {
     clientes.value = await getAllClientes()
@@ -108,7 +104,6 @@ const cargarClientes = async () => {
     await mostrarToast('Error al cargar clientes', 'danger')
   }
 }
-
 const guardarCliente = async () => {
   try {
     if (editando.value && idEditando.value !== null) {
@@ -124,13 +119,11 @@ const guardarCliente = async () => {
     await mostrarToast('Error al guardar cliente', 'danger')
   }
 }
-
 const editarCliente = (cli: ClienteData & { id: number }) => {
   cliente.value = { nombre: cli.nombre, telefono: cli.telefono, status: cli.status }
   editando.value = true
   idEditando.value = cli.id
 }
-
 const eliminarCliente = async (id: number) => {
   try {
     await deleteCliente(id)
@@ -140,14 +133,12 @@ const eliminarCliente = async (id: number) => {
     await mostrarToast('Error al eliminar cliente', 'danger')
   }
 }
-
 // Función para limpiar los datos y el formulario
 const clearData = () => {
   cliente.value = { nombre: '', telefono: 0, status: true }
   editando.value = false
   idEditando.value = null
 }
-
 onMounted(() => {
   cargarClientes()
 })

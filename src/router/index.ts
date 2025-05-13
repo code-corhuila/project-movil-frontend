@@ -1,23 +1,11 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/HomePage.vue';
-import GestionReservasPage from '../views/GestionReservasPage.vue';
 import GestionClientesPage from '../views/GestionClientes.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
-  },
-  {
-    path: '/gestion-reservas',
-    name: 'GestionReservas',
-    component: GestionReservasPage
+    redirect: '/gestion-clientes'
   },
   {
     path: '/gestion-clientes',
@@ -32,7 +20,3 @@ const router = createRouter({
 });
 
 export default router;
-
-
-
-
